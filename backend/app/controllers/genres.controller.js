@@ -2,7 +2,7 @@ const db = require("../models");
 
 const Genres = db.genre;
 
-// Create and Save a new Genres
+// Create and Save new Genres
 
 exports.create = (req, res) => {
   // Validate request

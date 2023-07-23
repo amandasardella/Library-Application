@@ -4,7 +4,7 @@ const db = require("../models");
 
 const Books = db.books;
 
-// Create and Save a new Product
+// Create and Save a new Book
 
 exports.create = (req, res) => {
   // Validate request
@@ -15,7 +15,7 @@ exports.create = (req, res) => {
     return;
   }
 
-  // Create a Product
+  // Create a Book
 
   const book = new Books({
     title: req.body.title,
@@ -29,7 +29,7 @@ exports.create = (req, res) => {
     //if boolean
   });
 
-  // Save Book in the database
+  // Save a Book in the database
   Books.create(book)
 
     .then((data) => {
@@ -64,7 +64,7 @@ exports.findAll = (req, res) => {
     });
 };
 
-// Find a single Product with an id
+// Find a single Book with an id
 exports.findOne = (req, res) => {
   const id = req.params.id;
 
@@ -113,7 +113,7 @@ exports.update = (req, res) => {
     });
 };
 
-// Delete a Product with the specified id in the request
+// Delete a Book with the specified id in the request
 exports.delete = (req, res) => {
   const id = req.params.id;
 
@@ -138,7 +138,7 @@ exports.delete = (req, res) => {
     });
 };
 
-// Delete all Products from the database.
+// Delete all Books from the database.
 exports.deleteAll = (req, res) => {
   Books.deleteMany({})
 
@@ -155,7 +155,7 @@ exports.deleteAll = (req, res) => {
     });
 };
 
-// Find all published Products
+// Find all published Books
 exports.findAllPublished = (req, res) => {
   Books.find({ published: true })
 
