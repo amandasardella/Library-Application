@@ -1,4 +1,4 @@
-export class Genres{
+export class Genre {
     id?: any;
-    title?: string;
+    name?: string;
 }
