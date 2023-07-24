@@ -21,7 +21,7 @@ db.mongoose
   });
 
 var corsOptions = {
-  origin: "http://localhost:3030",
+  origin: "http://localhost:3031",
 };
 
 app.use(cors(corsOptions));

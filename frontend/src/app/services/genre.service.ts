@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Genre } from '../models/genres.model';
 
-const baseUrl = 'http://localhost:3030/api/genre';
+const baseUrl = 'http://localhost:3030/api/genres';
 @Injectable({
     providedIn: 'root'
 })

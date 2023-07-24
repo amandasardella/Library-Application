@@ -19,7 +19,7 @@
             <div class="form-group">
                 <label for="genre">Genre</label>
                 <select class="form-control" [(ngModel)]="book.genres">
-                    <option *ngFor="let genre of genres" [ngValue]="genre.name">{{genre.name}}</option>
+                    <option *ngFor="let genre of genres" [ngValue]="genre.title">{{genre.title}}</option>
                 </select>
             </div>
 
