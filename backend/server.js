@@ -1,7 +1,9 @@
 const express = require("express");
 const cors = require("cors");
+const cookieSession = require("cookie-session");
 const app = express();
 const db = require("./app/models");
+const Role = db.role;
 
 db.mongoose
   .connect(db.url, {
@@ -19,10 +21,87 @@ db.mongoose
 
     process.exit();
   });
+  function initial() {
 
-var corsOptions = {
-  origin: "http://localhost:3031",
-};
+    Role.estimatedDocumentCount((err, count) => {
+  
+      if (!err && count === 0) {
+  
+        new Role({
+  
+          name: "user"
+  
+        }).save(err => {
+  
+          if (err) {
+  
+            console.log("error", err);
+  
+          }
+  
+   
+  
+          console.log("added 'user' to roles collection");
+  
+        });
+  
+   
+  
+        new Role({
+  
+          name: "moderator"
+  
+        }).save(err => {
+  
+          if (err) {
+  
+            console.log("error", err);
+  
+          }
+  
+   
+  
+          console.log("added 'moderator' to roles collection");
+  
+        });
+  
+   
+  
+        new Role({
+  
+          name: "admin"
+  
+        }).save(err => {
+  
+          if (err) {
+  
+            console.log("error", err);
+  
+          }
+  
+   
+  
+          console.log("added 'admin' to roles collection");
+  
+        });
+  
+      }
+  
+    });
+  
+  }
+
+  var corsOptions = {
+    origin: ["http://localhost:3031"],
+    credentials: true
+  };
+    
+  app.use(
+    cookieSession({
+    name: "Library-session",
+    secret: "LIBRARY_SECRET", // should use as secret environment variable
+    httpOnly: true
+    }));
 
 app.use(cors(corsOptions));
 
@@ -39,6 +118,12 @@ app.get("/", (req, res) => {
 
 require("./app/routes/books.routes")(app); //include routes in server.js
 require("./app/routes/genres.routes")(app);
+
+require('./app/routes/auth.routes')(app);
+
+require('./app/routes/user.routes')(app);
+
+
 
 // set port, listen for requests
 const PORT = process.env.PORT || 3030;
