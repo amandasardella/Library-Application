@@ -8,9 +8,8 @@ import { GenreService } from 'src/app/services/genre.service';
 @Component({
   selector: 'app-add-book',
   templateUrl: './add-book.component.html',
-  styleUrls: ['./add-book.component.css']
+  styleUrls: ['./add-book.component.css'],
 })
-
 export class AddBookComponent implements OnInit {
   book: Book = {
     title: '',
@@ -19,17 +18,20 @@ export class AddBookComponent implements OnInit {
     genres: '',
     ISBN: 0,
     availability: undefined,
-    publisher: ''
+    publisher: '',
   };
 
   submitted = false;
 
-  genres: Genre[] = []
+  genres: Genre[] = [];
 
-  constructor(private bookService: BookService, private genreService: GenreService) { }
+  constructor(
+    private bookService: BookService,
+    private genreService: GenreService
+  ) {}
 
   ngOnInit(): void {
-    this.genreService.getAll().subscribe(genres => {
+    this.genreService.getAll().subscribe((genres) => {
       this.genres = genres;
     });
   }
@@ -42,15 +44,15 @@ export class AddBookComponent implements OnInit {
       genres: this.book.genres,
       ISBN: this.book.ISBN,
       availability: this.book.availability,
-      publisher: this.book.publisher
-    }
+      publisher: this.book.publisher,
+    };
 
     this.bookService.create(data).subscribe({
       next: (res) => {
         console.log(res);
         this.submitted = true;
       },
-      error: (e) => console.error(e)
+      error: (e) => console.error(e),
     });
   }
 
@@ -63,7 +65,7 @@ export class AddBookComponent implements OnInit {
       genres: '',
       ISBN: 0,
       availability: undefined,
-      publisher: ''
+      publisher: '',
     };
   }
 }

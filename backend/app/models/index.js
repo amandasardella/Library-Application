@@ -7,15 +7,14 @@ const db = {}; //an empty object called `db` is created to store various propert
 
 db.mongoose = mongoose; //assigns the imported `mongoose` object to `db.mongoose`. This allows other modules that import this `db` module to access the Mongoose library.
 
-db.user = require("./user.model");
-
+db.user = require("./user.model"); //scripts
 db.role = require("./role.model");
-
 db.ROLES = ["user", "admin", "moderator"];
 
 db.url = dbConfig.url; //assigns the database URL from the `dbConfig` module to `db.url`. This URL specifies the location of the MongoDB database.
 
 db.books = require("./books.model.js")(mongoose); //imports the books model from the "./books.model.js" file and immediately calls it with the `mongoose` object as an argument. This is likely a function that defines the product schema and returns a Mongoose model for the "books" collection.
 db.genre = require("./genres.model.js")(mongoose);
+db.refreshToken = require("./refreshToken.model");
 
 module.exports = db; //exports the `db` object so that other modules can import and use it.
