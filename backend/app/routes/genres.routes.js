@@ -24,5 +24,5 @@ module.exports = (app) => {
   // Delete all Book
   router.delete("/", genre.deleteAll);
 
-  app.use("/api/genre", router);
+  app.use("/api/genres", router);
 };
